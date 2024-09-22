@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +26,7 @@ app.post('/bfhl', upload.single('file'), (req, res) => {
     const highestLowercase = alphabets
         .filter(char => char >= 'a' && char <= 'z')
         .sort()
-        .pop() || ' a'; // Adjusted to match the expected output with space
+        .pop(); // Adjusted to match the expected output with space
 
     // File handling
     let fileValid = false;
